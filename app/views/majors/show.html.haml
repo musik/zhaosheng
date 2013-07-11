@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @major.name
+%p
+  %b School:
+  = @major.school_id
+%p
+  %b Zhaosheng leibie:
+  = @major.moshi
+%p
+  %b Leibie:
+  = @major.leibie
+%p
+  %b Duixiang:
+  = @major.duixiang
+%p
+  %b Code:
+  = @major.code
+%p
+  %b Xuezhi:
+  = @major.xuezhi
+%p
+  %b Renshu:
+  = @major.renshu
+%p
+  %b Xuefei:
+  = @major.xuefei
+
+= link_to 'Edit', edit_major_path(@major)
+\|
+= link_to 'Back', majors_path

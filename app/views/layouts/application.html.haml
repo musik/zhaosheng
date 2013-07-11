@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Zhaosheng"
+      %title= content_for?(:title) ? [yield(:title),t('appname')].join(" - ").html_safe : t('appname')
       %meta{:content => content_for?(:description) ? yield(:description) : "Zhaosheng", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
@@ -19,7 +19,19 @@
           .row
             .span12
               = render 'layouts/messages'
+              -unless @hide_breadcrumbs
+                .breadcrumb 
+                  =breadcrumbs.render(:format=>'inline')
+                  -if @title_in_breadcrumbs
+                    %h1=yield(:header)
               = yield
           %footer
+            %hr
+            &copy; 
+            2013 www.zhaoshang100.com -
+            =t('appname')
+            .pull-right 
       / ! end of .container
     / ! end of #main
+    -if Rails.env.production?
+      <script type="text/javascript" src="http://js.tongji.linezing.com/3184091/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3184091/tongji.gif"/></a></noscript>

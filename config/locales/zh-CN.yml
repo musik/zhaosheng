@@ -1,0 +1,52 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+zh-CN:
+  appname: 云南招生网
+  home: 云南招生网-招生考试,工作信息,招考频道,中职专业查询
+  Back: 返回
+  breadcrumbs:
+    home: 首页
+    overview: 概览
+  nav:
+    schools: 学校
+    majors: 专业
+  majors:
+    index:
+      title:
+       home: 云南招生网-招生考试,工作信息,招考频道,中职专业查询
+       default: 中职专业查询
+       duixiang_leibie_moshi: "招生对象为%{duixiang_eq}的%{leibie_eq}%{moshi_eq}专业"
+       duixiang_leibie: "招生对象为%{duixiang_eq}的%{leibie_eq}专业"
+       duixiang_moshi: "招生对象为%{duixiang_eq}的%{moshi_eq}专业"
+       leibie_moshi: "%{leibie_eq}%{moshi_eq}专业"
+       duixiang: "招生对象为%{duixiang_eq}的专业"
+       leibie: "%{leibie_eq}专业"
+       moshi: "%{moshi_eq}专业"
+  ransack:
+    asc: "ascending"
+    desc: "descending"
+    predicates:
+      cont: "含有"
+      not_cont: "not contains"
+      start: "starts with"
+      end: "ends with"
+      gt: "greater than"
+      lt: "less than"    
+  enumerize:
+    post_type:
+      discussion: 讨论
+      question: 疑问
+      idea: 建议
+      problem: 故障
+    post_status:
+      open: 开放讨论
+      closed: 已关闭的讨论
+      unanswered: 暂无解答的疑问
+      answered: 已解答的疑问
+      consideration: 暂未处理的建议
+      planned: 已在计划中的建议
+      completed: 已完成的建议
+      rejected: 已否绝的建议
+      active: 暂未解决的故障
+      solved: 已解决的故障

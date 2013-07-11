@@ -1,7 +1,7 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 ruby '1.9.3'
 gem 'rails', '3.2.8'
-gem 'sqlite3'
+gem 'mysql2'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -19,7 +19,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'guard-bundler'
-  gem 'guard-cucumber'
+  gem 'guard-livereload'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'html2haml'
@@ -28,8 +28,12 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'capistrano-recipes'
+  gem 'capistrano-helpers'
+  gem 'capistrano-unicorn',:git=>'git://github.com/sosedoff/capistrano-unicorn.git'
 end
 group :development, :test do
+  gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'thin'
@@ -44,3 +48,11 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
 end
+
+gem 'typhoeus'
+gem 'nokogiri'
+
+gem "ransack", :git => "git://github.com/ernie/ransack.git"
+gem 'enumerize'
+gem 'kaminari'
+gem 'breadcrumbs'

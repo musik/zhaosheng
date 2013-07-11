@@ -1,17 +1,20 @@
-= link_to "Zhaosheng", root_path, :class => 'brand'
+= link_to t('appname'), root_path, :class => 'brand'
 %ul.nav
-  - if user_signed_in?
-    %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Login', new_user_session_path
-  - if user_signed_in?
-    %li
-      = link_to 'Edit account', edit_user_registration_path
-    - if current_user.has_role? :admin
-      %li
-        = link_to 'Admin', users_path
-  - else
-    %li
+  -#%li=link_to t('nav.schools'),schools_url
+  -#%li=link_to t('nav.majors'),majors_url
+-#%ul.nav.pull-right
+  -#- if user_signed_in?
+    -#%li
+      -#= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+  -#- else
+    -#%li
+      -#= link_to 'Login', new_user_session_path
+  -#- if user_signed_in?
+    -#%li
+      -#= link_to 'Edit account', edit_user_registration_path
+    -#- if current_user.has_role? :admin
+      -#%li
+        -#= link_to 'Admin', users_path
+  -#- else
+    -#%li
       = link_to 'Sign up', new_user_registration_path

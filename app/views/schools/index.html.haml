@@ -1,0 +1,28 @@
+%h1 Listing schools
+=paginate @schools
+
+%table
+  %tr
+    %th Name
+    %th Code
+    %th Address
+    %th Phone
+    %th Postal
+    %th
+    %th
+    %th
+
+  - @schools.each do |school|
+    %tr
+      %td= school.name
+      %td= school.code
+      %td= school.address
+      %td= school.phone
+      %td= school.postal
+      %td= link_to 'Show', school
+      %td= link_to 'Edit', edit_school_path(school)
+      %td= link_to 'Destroy', school, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New School', new_school_path

@@ -1,0 +1,16 @@
+= simple_form_for(@major) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :school_id
+    = f.input :zhaosheng_leibie
+    = f.input :leibie
+    = f.input :duixiang
+    = f.input :code
+    = f.input :xuezhi
+    = f.input :renshu
+    = f.input :xuefei
+
+  .form-actions
+    = f.button :submit

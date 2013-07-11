@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707152206) do
+ActiveRecord::Schema.define(:version => 20130711151050) do
+
+  create_table "majors", :force => true do |t|
+    t.string   "name"
+    t.integer  "source_id"
+    t.integer  "school_id"
+    t.string   "moshi"
+    t.string   "leibie"
+    t.string   "duixiang"
+    t.string   "code"
+    t.integer  "xuezhi"
+    t.integer  "renshu"
+    t.integer  "xuefei"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "majors", ["school_id"], :name => "index_majors_on_school_id"
+  add_index "majors", ["source_id"], :name => "index_majors_on_source_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +41,19 @@ ActiveRecord::Schema.define(:version => 20130707152206) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.boolean  "gongban"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "postal"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "schools", ["name"], :name => "index_schools_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

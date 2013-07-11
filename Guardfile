@@ -7,15 +7,18 @@ guard 'bundler' do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'cucumber' do
-  watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$})          { 'features' }
-  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
-end
 
-guard 'rails' do
+guard 'livereload' do
+  watch(%r{app/views/.+\.(erb|haml|slim)})
+  watch(%r{app/helpers/.+\.rb})
+  watch(%r{public/.+\.(css|js|html)})
+  watch(%r{config/locales/.+\.yml})
+  # Rails Assets Pipeline
+  watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/#{m[2]}" }
+end
+guard 'rails',:port=>4006 do
   watch('Gemfile.lock')
-  watch(%r{^(config|lib)/.*})
+  #watch(%r{^(config|lib)/.*})
 end
 
 

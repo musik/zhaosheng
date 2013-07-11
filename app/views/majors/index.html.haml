@@ -1,0 +1,91 @@
+-#-title t(".title.#{@title_key}",@params_q)
+-title(@title.present? ? @title : majors_title(@params_q))
+-@title_in_breadcrumbs = true
+-breadcrumbs.add nil
+#filters
+  %dl.filter
+    %dt 模式
+    %dd
+    -cls={params[:moshi]=>'active'}
+    -{nil=> '不限'}.merge(Major::MOSHI).each do |key,val|
+      %a{:href=>filter_url_for(moshi: key),:class=>cls[key.nil? ? key : key.to_s]}=val
+  %dl.filter
+    %dt 类别
+    %dd
+    -cls={params[:leibie]=>'active'}
+    -{nil=> '不限'}.merge(Major::LEIBIE).each do |key,val|
+      %a{:href=>filter_url_for(leibie: key),:class=>cls[key.nil? ? key : key.to_s]}=val
+  %dl.filter
+    %dt 招生对象
+    %dd
+    -cls={params[:duixiang]=>'active'}
+    -{nil=> '不限'}.merge(Major::DUIXIANG).each do |key,val|
+      %a{:href=>filter_url_for(duixiang: key),:class=>cls[key.nil? ? key : key.to_s]}=val
+=form_tag majors_url,:method=>:get,:class=>'form-inline' do |f|
+  =label_tag 'name',"专业名称"
+  =text_field_tag :name,params[:name],:class=>"input-medium"
+  =label_tag 'school_name',"学校名称"
+  =text_field_tag :school_name,params[:school_name],:class=>"input-medium"
+  =submit_tag "搜索"
+-#=search_form_for @q,:html=>{:class=>'form-inline'} do |f|
+  -#=f.label :name_cont
+  -#=f.text_field :name_cont,:class=>"input-medium"
+  -#-#=f.label :school_name_cont
+  -#-#=f.text_field :school_name_cont,:class=>"input-medium"
+  -#=f.submit "搜索"
+-if @school.present?  
+  .well
+    %strong.fn=@school.name
+    -if @school.gongban?
+      %span.label.label-success="公办"
+    -else
+      %span.label="民办"
+    .address #{@school.address} - #{@school.postal}
+    .phone=@school.phone
+
+=paginate @majors
+-manage = can? :manage,Major
+-if @majors.empty?
+  .alert
+    暂时没有符合条件的记录, 请调整你的查询条件。
+-else    
+  %table.table
+    %tr
+      %th 名称
+      %th 学校
+      %th 模式
+      %th 类别
+      %th 招生对象
+      %th 代码
+      %th 学制
+      %th 人数
+      %th 学费
+      -if manage
+        %th
+
+    - @majors.each do |major|
+      %tr
+        %td=link_to major.name,majors_url(:name=>major.name)
+        %td
+          -if major.school.gongban?
+            %span.label.label-success="公办"
+          -else
+            %span.label="民办"
+          =link_to major.school.name,xuexiao_url(:xuexiao=>major.school.name)
+        -#%td=link_to major.name,major
+        -#%td=link_to major.school.name,major.school
+        %td= major.moshi
+        %td= major.leibie
+        %td= major.duixiang
+        %td= major.code
+        %td #{major.xuezhi}年
+        %td #{major.renshu}人
+        %td= major.xuefei.zero? ? "-" : "#{major.xuefei}元"
+        -if manage
+          %td
+            = link_to 'Edit', edit_major_path(major)
+            = link_to 'Destroy', major, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Major', new_major_path if manage
