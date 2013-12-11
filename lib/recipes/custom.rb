@@ -4,16 +4,18 @@ Capistrano::Configuration.instance.load do
   namespace :app do
     desc "|Custom| Create database.yml in shared path with settings for current stage and test env"
     task :yml do      
-      upload './config/resque.yml', "#{shared_path}/config/resque.yml"
-      upload './config/taobao.yml', "#{shared_path}/config/taobao.yml"
-      upload './config/resque-pool.yml', "#{shared_path}/config/resque-pool.yml"
+      upload './config/application.yml', "#{shared_path}/config/application.yml"
+      #upload './config/taobao.yml', "#{shared_path}/config/taobao.yml"
     end 
     task :symlink do
       run "if [ ! -d '#{shared_path}/html' ]; then mkdir #{shared_path}/html; fi;"
       run "rm -rf #{release_path}/public/cache && ln -nfs #{shared_path}/html #{release_path}/public/cache"
       run "rm -rf #{release_path}/config/database.yml && ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-      run "rm -rf #{release_path}/config/resque.yml && ln -nfs #{shared_path}/config/resque.yml #{release_path}/config/resque.yml"
-      run "rm -rf #{release_path}/config/taobao.yml && ln -nfs #{shared_path}/config/taobao.yml #{release_path}/config/taobao.yml"
+      #run "rm -rf #{release_path}/config/resque.yml && ln -nfs #{shared_path}/config/resque.yml #{release_path}/config/resque.yml"
+      #run "rm -rf #{release_path}/config/taobao.yml && ln -nfs #{shared_path}/config/taobao.yml #{release_path}/config/taobao.yml"
+    end
+    task :whenever do
+      "cd #{current_path} && bundle exec rake whenever -w"
     end
   end
   namespace :unicorn do

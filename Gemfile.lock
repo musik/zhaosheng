@@ -17,6 +17,7 @@ GIT
 GEM
   remote: http://ruby.taobao.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
       mail (~> 2.4.4)
@@ -327,6 +328,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   better_errors
   binding_of_caller
   bootstrap-sass

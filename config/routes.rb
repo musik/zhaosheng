@@ -1,4 +1,6 @@
 Zhaosheng::Application.routes.draw do
+  resources :snips
+
   match '/moshi-:moshi-leibie-:leibie-duixiang-:duixiang'=>'majors#index'
   match '/leibie-:leibie-duixiang-:duixiang'=>'majors#index'
   match '/moshi-:moshi-leibie-:leibie'=>'majors#index'

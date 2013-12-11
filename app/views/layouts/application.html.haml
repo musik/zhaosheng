@@ -27,6 +27,8 @@
               = yield
           %footer
             %hr
+            -if is_home?
+              .links=snip_get("home")
             &copy; 
             2013 www.zhaoshang100.com -
             =t('appname')

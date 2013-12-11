@@ -56,3 +56,4 @@ gem "ransack", :git => "git://github.com/ernie/ransack.git"
 gem 'enumerize'
 gem 'kaminari'
 gem 'breadcrumbs'
+gem 'RedCloth'
