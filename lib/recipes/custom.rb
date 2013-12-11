@@ -11,7 +11,7 @@ Capistrano::Configuration.instance.load do
       run "if [ ! -d '#{shared_path}/html' ]; then mkdir #{shared_path}/html; fi;"
       run "rm -rf #{release_path}/public/cache && ln -nfs #{shared_path}/html #{release_path}/public/cache"
       run "rm -rf #{release_path}/config/database.yml && ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-      #run "rm -rf #{release_path}/config/resque.yml && ln -nfs #{shared_path}/config/resque.yml #{release_path}/config/resque.yml"
+      run "rm -rf #{release_path}/config/application.yml && ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
       #run "rm -rf #{release_path}/config/taobao.yml && ln -nfs #{shared_path}/config/taobao.yml #{release_path}/config/taobao.yml"
     end
     task :whenever do
